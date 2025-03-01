@@ -8,4 +8,4 @@ az aks create \
     --generate-ssh-keys
 
 # credentials
-# az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+# az aks get-credentials --resource-group rg-aks-dev --name aks-dev-01
