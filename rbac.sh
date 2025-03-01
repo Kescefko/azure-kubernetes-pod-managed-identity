@@ -14,7 +14,7 @@ echo "Node resource group ID: $NODES_RESOURCE_ID"
 
 # Obtain the identity client ID
 IDENTITY_NAME="application-identity-weu"
-IDENTITY_CLIENT_ID=$(az identity show --resource-group rg-aks-dev --name "${IDENTITY_NAME}" --query clientId -o tsv)
+IDENTITY_CLIENT_ID=$(az identity show --resource-group rg-identity-weu --name "${IDENTITY_NAME}" --query clientId -o tsv)
 
 # Debugging output to ensure IDENTITY_CLIENT_ID is correct
 echo "Identity Client ID: $IDENTITY_CLIENT_ID"
@@ -27,3 +27,7 @@ fi
 
 # Create a role assignment granting your managed identity permissions on the node resource group
 az role assignment create --role "Virtual Machine Contributor" --assignee "$IDENTITY_CLIENT_ID" --scope "$NODES_RESOURCE_ID"
+echo "Identity Client ID: $IDENTITY_CLIENT_ID"
+echo "Node Resource ID: $NODES_RESOURCE_ID"
+
+# az role assignment create --role "Virtual Machine Contributor" --assignee "961057b8-73c7-4967-8585-4f739c270360"  --scope "subscriptions/1c2b3b73-e5d4-4ab6-9ac4-c807cb39e0ef/resourceGroups/MC_rg-aks-dev_aks-dev-01_westeurope"
